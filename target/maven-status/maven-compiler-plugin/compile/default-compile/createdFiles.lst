@@ -1,0 +1,7 @@
+model/entities/FavoriteMovies.class
+model/entities/Movie.class
+model/entities/AwfulMovies.class
+model/interfaces/Insertable.class
+com/mycompany/movierater/MovieRater.class
+model/entities/Director.class
+model/interfaces/Removable.class
