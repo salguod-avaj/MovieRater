@@ -5,13 +5,13 @@
 package model.entities;
 
 import model.interfaces.Insertable;
-import model.interfaces.Removable;
+
 
 /**
  *
  * @author dg
  */
-public abstract class Movie implements Insertable, Removable{
+public abstract class Movie implements Insertable{
     protected String title;
     protected Integer year;
     protected double rating;

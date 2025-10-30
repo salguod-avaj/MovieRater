@@ -4,4 +4,3 @@
 /home/dg/NetBeansProjects/movieRater/src/main/java/model/entities/FavoriteMovies.java
 /home/dg/NetBeansProjects/movieRater/src/main/java/model/entities/Movie.java
 /home/dg/NetBeansProjects/movieRater/src/main/java/model/interfaces/Insertable.java
-/home/dg/NetBeansProjects/movieRater/src/main/java/model/interfaces/Removable.java

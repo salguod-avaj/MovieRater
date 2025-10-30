@@ -32,9 +32,8 @@ public class MovieRater {
                 
                 System.out.println("[1] add a movie");
                 System.out.println("[2] remove a movie:");
-                System.out.println("[3] update a movie: ");
-                System.out.println("[4] show list");
-                System.out.println("[5] exit");
+                System.out.println("[3] show list");
+                System.out.println("[4] exit");
                 
                 System.out.println("Select a option: ");
                 choice = sc.nextInt();
@@ -71,21 +70,21 @@ public class MovieRater {
                     case 2:
                         System.out.println("Enter a id to search: ");
                         int id = sc.nextInt();
-                        for(Movie x : list) {
-                            if(x.getID() == id) {
-                                x.remove(list);
-                            }
+                        boolean removed = list.removeIf(x -> x.getID() == id);
+                        if(removed) {
+                            System.out.println("Removed movie with id " + id);
+                        }
+                        else {
+                            System.out.println("No movie found with this id.");
                         }
                         break;
                     case 3:
-                        break;
-                    case 4:
                         for(Movie x : list) {
                             System.out.println(x);
                         }
                         break;
                 }
-            } while (choice != 5);
+            } while (choice != 4);
             
         }
         catch(IllegalArgumentException e) {

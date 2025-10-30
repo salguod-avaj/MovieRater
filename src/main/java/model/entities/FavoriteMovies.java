@@ -7,13 +7,13 @@ package model.entities;
 import java.util.ArrayList;
 import java.util.List;
 import model.interfaces.Insertable;
-import model.interfaces.Removable;
+
 
 /**
  *
  * @author dg
  */
-public class FavoriteMovies extends Movie implements Insertable, Removable{
+public class FavoriteMovies extends Movie implements Insertable{
 
     private int personalRating;
     
@@ -56,11 +56,6 @@ public class FavoriteMovies extends Movie implements Insertable, Removable{
         System.out.println("added to favorite movies");
     }
 
-    @Override
-    public void remove(List<Movie> movie) {
-        movie.remove(this);
-        System.out.println("removed from favorite movies");
-    }
     
     @Override
     public String toString() {
