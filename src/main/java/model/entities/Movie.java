@@ -84,7 +84,7 @@ public abstract class Movie implements Insertable{
         return director;
     }
     
-    public int getID() {
+    public int getId() {
         return id;
     }
     
@@ -92,6 +92,7 @@ public abstract class Movie implements Insertable{
     public abstract String showMovies();
     
     
+    @Override
     public abstract String toString();
     
    

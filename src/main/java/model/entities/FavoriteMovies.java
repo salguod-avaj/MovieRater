@@ -59,12 +59,19 @@ public class FavoriteMovies extends Movie implements Insertable{
     
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("(Favorite) ");
-        sb.append(title);
-        sb.append(" | ");
-        sb.append(id);
-        
-        return sb.toString();
+    return String.format(
+            "(Favorite) ID: %d | Title: %s | Year: %d | Rating: %.1f | Genre: %s | Duration: %d min | Director: %s | Personal Rating: %d",
+            getId(),        // %d → inteiro (ID vem da superclasse)
+            getTitle(),     // %s → string
+            getYear(),      // %d → inteiro
+            getRating(),    // %.1f → float com 1 casa decimal
+            getGender(),    // %s → string
+            getDuration(),  // %d → inteiro
+            getDirector(),  // %s → toString() de Director
+            personalRating  // %d → inteiro
+        );
     }
+    
+    
+    
 }

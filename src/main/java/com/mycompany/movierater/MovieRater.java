@@ -70,7 +70,7 @@ public class MovieRater {
                     case 2:
                         System.out.println("Enter a id to search: ");
                         int id = sc.nextInt();
-                        boolean removed = list.removeIf(x -> x.getID() == id);
+                        boolean removed = list.removeIf(x -> x.getId() == id);
                         if(removed) {
                             System.out.println("Removed movie with id " + id);
                         }
