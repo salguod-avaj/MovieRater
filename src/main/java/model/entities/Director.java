@@ -23,5 +23,9 @@ public class Director {
         return director;
     }
     
+    @Override
+    public String toString() {
+        return director;
+    }
     
 }

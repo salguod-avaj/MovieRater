@@ -61,14 +61,14 @@ public class FavoriteMovies extends Movie implements Insertable{
     public String toString() {
     return String.format(
             "(Favorite) ID: %d | Title: %s | Year: %d | Rating: %.1f | Genre: %s | Duration: %d min | Director: %s | Personal Rating: %d",
-            getId(),        // %d → inteiro (ID vem da superclasse)
-            getTitle(),     // %s → string
-            getYear(),      // %d → inteiro
-            getRating(),    // %.1f → float com 1 casa decimal
-            getGender(),    // %s → string
-            getDuration(),  // %d → inteiro
-            getDirector(),  // %s → toString() de Director
-            personalRating  // %d → inteiro
+            getId(),        
+            getTitle(),     
+            getYear(),      
+            getRating(),    
+            getGender(),    
+            getDuration(),  
+            getDirector(),  
+            personalRating  
         );
     }
     

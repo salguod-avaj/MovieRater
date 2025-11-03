@@ -1,0 +1,4 @@
+(Favorite) ID: 1 | Title: Scarface | Year: 1983 | Rating: 8.4 | Genre: Action | Duration: 180 min | Director: model.entities.Director@6b884d57 | Personal Rating: 10
+(Favorite) ID: 2 | Title: GodFather | Year: 1983 | Rating: 8.6 | Genre: drama | Duration: 190 min | Director: model.entities.Director@38af3868 | Personal Rating: 10
+(Awful) ID: 1 | Title: American pie | Year: 1984 | Rating: 8.6 | Genre: drama | Duration: 140 min | Director: wes andersen | Personal Rating: 2
+(Favorite) ID: 2 | Title: Arrival | Year: 2000 | Rating: 9.0 | Genre: sci-fi | Duration: 160 min | Director: dennis villanueve | Personal Rating: 10

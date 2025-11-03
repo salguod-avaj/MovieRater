@@ -4,6 +4,9 @@
 
 package com.mycompany.movierater;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -23,8 +26,9 @@ public class MovieRater {
     public static void main(String[] args) {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
+        String path = "/home/dg/NetBeansProjects/movieRater/movieslist.csv";
         
-        try{
+        try(BufferedWriter br = new BufferedWriter(new FileWriter(path, true))){
            int choice;
            List<Movie> list = new ArrayList<>();
            Insertable movie;
@@ -33,7 +37,8 @@ public class MovieRater {
                 System.out.println("[1] add a movie");
                 System.out.println("[2] remove a movie:");
                 System.out.println("[3] show list");
-                System.out.println("[4] exit");
+                System.out.println("[4] move to spread sheet");
+                System.out.println("[5] exit");
                 
                 System.out.println("Select a option: ");
                 choice = sc.nextInt();
@@ -83,12 +88,25 @@ public class MovieRater {
                             System.out.println(x);
                         }
                         break;
+                    case 4:
+                        for(Movie x : list) {
+                            br.write(x.toString());
+                            br.newLine();
+                            System.out.println("moving...");
+                        }
+                        
+                        
+                        break;
                 }
-            } while (choice != 4);
+            } while (choice != 5);
             
         }
         catch(IllegalArgumentException e) {
             System.out.println("Invalid argument");
+            e.printStackTrace();
+        }
+        catch(IOException e) {
+            System.out.println("Error writing to file");
             e.printStackTrace();
         }
         
