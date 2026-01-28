@@ -6,6 +6,7 @@ package model.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.exceptions.IllegalNotesException;
 import model.interfaces.Insertable;
 
 
@@ -14,7 +15,7 @@ import model.interfaces.Insertable;
  * @author dg
  */
 public class AwfulMovies extends Movie implements Insertable{
-    private int personalRating;
+    private double personalRating;
     
     
     
@@ -23,18 +24,24 @@ public class AwfulMovies extends Movie implements Insertable{
     public AwfulMovies() {
     }
     
-    public AwfulMovies(String title, Integer year, double rating, String gender, int duration, Director director, int personalRating) {
+    public AwfulMovies(String title, Integer year, double rating, String gender, int duration, Director director, double personalRating) {
         super(title, year, rating, gender, duration, director);
+        if(personalRating < 0.0) {
+            throw new IllegalNotesException("Note cannot be lower than 0!");
+        }
+        if(personalRating > 5.0) {
+            throw new IllegalNotesException("Note cannot be higher than 5!");
+        }
         this.personalRating = personalRating;
     }
 
     
-    public int getPersonalRating() {
+    public double getPersonalRating() {
         return personalRating;
     }
 
     
-    public void setPersonalRating(int personalRating) {
+    public void setPersonalRating(double personalRating) {
         this.personalRating = personalRating;
     }
 
@@ -60,15 +67,15 @@ public class AwfulMovies extends Movie implements Insertable{
     @Override
     public String toString() {
         return String.format(
-            "(Awful) ID: %d | Title: %s | Year: %d | Rating: %.1f | Genre: %s | Duration: %d min | Director: %s | Personal Rating: %d",
-            getId(),        // %d → inteiro (ID vem da superclasse)
-            getTitle(),     // %s → string
-            getYear(),      // %d → inteiro
-            getRating(),    // %.1f → float com 1 casa decimal
-            getGender(),    // %s → string
-            getDuration(),  // %d → inteiro
-            getDirector(),  // %s → toString() de Director
-            personalRating  // %d → inteiro
+            "(Awful) ID: %d | Title: %s | Year: %d | Rating: %.1f | Genre: %s | Duration: %d min | Director: %s | Personal Rating: %.1f",
+            getId(),       
+            getTitle(),     
+            getYear(),      
+            getRating(),    
+            getGender(),    
+            getDuration(),  
+            getDirector(),  
+            personalRating  
         );
     }
     

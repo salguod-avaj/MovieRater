@@ -4,6 +4,8 @@
  */
 package model.entities;
 
+import model.exceptions.IllegalNotesException;
+import model.exceptions.IllegalYearException;
 import model.interfaces.Insertable;
 
 
@@ -24,7 +26,16 @@ public abstract class Movie implements Insertable{
     public Movie() {
     }
 
-    public Movie(String title, Integer year, double rating,  String gender, int duration, Director director) {
+    public Movie(String title, Integer year, double rating,  String gender, int duration, Director director) { 
+        if(rating > 10.0) {
+            throw new IllegalNotesException("Note cannot be higher than 5!");
+        }
+        if(rating < 0.0) {
+            throw new IllegalNotesException("Note cannot be lower than 0!");
+        }
+        if (year < 1888 || year > 2027) {
+            throw new IllegalYearException("Invalid year");
+        }
         this.id = nextId++;
         this.title = title;
         this.year = year;
@@ -35,6 +46,14 @@ public abstract class Movie implements Insertable{
         
     }
 
+    public static void setNextId(int nextId) {
+        Movie.nextId = nextId;
+    }
+    
+    public static int getNextId() {
+        return nextId;
+    }
+    
     
     public String getTitle() {
         return title;

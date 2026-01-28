@@ -6,6 +6,7 @@ package model.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.exceptions.IllegalNotesException;
 import model.interfaces.Insertable;
 
 
@@ -15,7 +16,7 @@ import model.interfaces.Insertable;
  */
 public class FavoriteMovies extends Movie implements Insertable{
 
-    private int personalRating;
+    private double personalRating;
     
     
    
@@ -24,18 +25,26 @@ public class FavoriteMovies extends Movie implements Insertable{
     }
    
 
-    public FavoriteMovies(String title, Integer year, double rating, String gender, int duration, Director director, int personalRating) {
+    public FavoriteMovies(String title, Integer year, double rating, String gender, int duration, Director director, double personalRating) {
         super(title, year, rating, gender, duration, director);
+        if(personalRating < 0.0) {
+            throw new IllegalNotesException("Note cannot be lower than 0!");
+        }
+        if(personalRating > 5.0) {
+            throw new IllegalNotesException("Note cannot be higher than 5!");
+        }
+       
         this.personalRating = personalRating;
+
     }
 
    
-    public int getPersonalRating() {
+    public double getPersonalRating() {
         return personalRating;
     }
 
     
-    public void setPersonalRating(int personalRating) {
+    public void setPersonalRating(double personalRating) {
         this.personalRating = personalRating;
     }
 
@@ -60,7 +69,7 @@ public class FavoriteMovies extends Movie implements Insertable{
     @Override
     public String toString() {
     return String.format(
-            "(Favorite) ID: %d | Title: %s | Year: %d | Rating: %.1f | Genre: %s | Duration: %d min | Director: %s | Personal Rating: %d",
+            "(Favorite) ID: %d | Title: %s | Year: %d | Rating: %.1f | Genre: %s | Duration: %d min | Director: %s | Personal Rating: %.1f",
             getId(),        
             getTitle(),     
             getYear(),      

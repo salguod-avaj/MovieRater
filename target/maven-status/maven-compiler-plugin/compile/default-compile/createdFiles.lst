@@ -1,6 +1,11 @@
-model/interfaces/Insertable.class
 model/entities/FavoriteMovies.class
-com/mycompany/movierater/MovieRater.class
 model/entities/Movie.class
-model/entities/Director.class
+model/entities/CsvExporter.class
+model/exceptions/IllegalYearException.class
+model/interfaces/Exportable.class
+model/entities/TxtExporter.class
+model/exceptions/IllegalNotesException.class
 model/entities/AwfulMovies.class
+model/interfaces/Insertable.class
+com/mycompany/movierater/MovieRater.class
+model/entities/Director.class

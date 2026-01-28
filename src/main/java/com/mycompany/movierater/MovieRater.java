@@ -5,6 +5,7 @@
 package com.mycompany.movierater;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,9 +13,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 import model.entities.AwfulMovies;
+import model.entities.CsvExporter;
 import model.entities.Director;
 import model.entities.FavoriteMovies;
 import model.entities.Movie;
+import model.entities.TxtExporter;
+import model.exceptions.IllegalNotesException;
+import model.exceptions.IllegalYearException;
+import model.interfaces.Exportable;
 import model.interfaces.Insertable;
 
 /**
@@ -26,19 +32,24 @@ public class MovieRater {
     public static void main(String[] args) {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
-        String path = "/home/dg/NetBeansProjects/movieRater/movieslist.csv";
+        String path = "/home/dg/NetBeansProjects/movieRater/movieslist";
+        Exportable exporter;
+        int lastId = loadLastId(path);
+        Movie.setNextId(lastId + 1);
         
-        try(BufferedWriter br = new BufferedWriter(new FileWriter(path, true))){
+        
+        try{
            int choice;
            List<Movie> list = new ArrayList<>();
            Insertable movie;
             do {
                 
-                System.out.println("[1] add a movie");
-                System.out.println("[2] remove a movie:");
-                System.out.println("[3] show list");
-                System.out.println("[4] move to spread sheet");
-                System.out.println("[5] exit");
+                System.out.println("[1] Add a movie");
+                System.out.println("[2] Remove a movie:");
+                System.out.println("[3] Show list");
+                System.out.println("[4] Export to CSV");
+                System.out.println("[5] Export to TXT");
+                System.out.println("[6] Exit");
                 
                 System.out.println("Select a option: ");
                 choice = sc.nextInt();
@@ -60,8 +71,8 @@ public class MovieRater {
                         sc.nextLine();
                         String director = sc.nextLine();
                         System.out.println("Enter your personal rating: ");
-                        int personalRating = sc.nextInt();
-                        System.out.println("Enter personal classification (A - Awful/ F - favorite)");
+                        double personalRating = sc.nextDouble();
+                        System.out.println("Enter personal classification (A - Awful/ F - Favorite)");
                         char newChoice = sc.next().toLowerCase().charAt(0);
                         if(newChoice == 'f') {
                             movie = new FavoriteMovies(title, year, rating, gender, duration, new Director(director), personalRating);
@@ -89,26 +100,70 @@ public class MovieRater {
                         }
                         break;
                     case 4:
-                        for(Movie x : list) {
-                            br.write(x.toString());
-                            br.newLine();
-                            System.out.println("moving...");
+                        try {
+                            exporter = new CsvExporter(path + ".csv");
+                            exporter.export(list);
+                            System.out.println("Movies exported sucessfully");
                         }
-                        
-                        
+                        catch(IOException e) {
+                            System.out.println("Error exporting to CSV");
+                        }
+                        break;
+                    case 5:
+                        try {
+                            exporter = new TxtExporter(path + ".txt");
+                            exporter.export(list);
+                            System.out.println("Movies exported sucessfully");
+                        }
+                        catch(IOException e) {
+                            System.out.println("Error exporting to TXT");
+                        }
+                        break;
+                    case 6:
+                        System.out.println("Turning off...");
+                        break;
+                    default:
+                        System.out.println("Invalid option.");
                         break;
                 }
-            } while (choice != 5);
+            } while (choice != 6);
             
         }
         catch(IllegalArgumentException e) {
             System.out.println("Invalid argument");
             e.printStackTrace();
         }
-        catch(IOException e) {
-            System.out.println("Error writing to file");
-            e.printStackTrace();
+        catch(IllegalNotesException  e) {
+            System.out.println(e);
+        }
+        catch(IllegalYearException e) {
+            System.out.println(e);
         }
         
     }
+    
+    
+    private static int loadLastId(String path) {
+        int lastId = 0;
+        
+        File file = new File(path);
+        if (!file.exists()) return 0;
+        
+        try (Scanner fileScanner = new Scanner(file)) {
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+
+            if (line.contains("ID:")) {
+                int start = line.indexOf("ID:") + 3;
+                int end = line.indexOf("|", start);
+                int id = Integer.parseInt(line.substring(start, end).trim());
+                lastId = Math.max(lastId, id);
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("Error reading file for IDs");
+    }
+        return lastId; 
+    }
+   
 }

@@ -1,0 +1,8 @@
+(Favorite) ID: 1 | Title: One battle after another | Year: 2025 | Rating: 7.8 | Genre: Action | Duration: 181 min | Director: Paul thomas anderson | Personal Rating: 4.8
+(Favorite) ID: 2 | Title: Marty Supreme | Year: 2025 | Rating: 8.2 | Genre: Drama | Duration: 149 min | Director: Josh Safdie | Personal Rating: 5.0
+(Favorite) ID: 3 | Title: Sinners | Year: 2025 | Rating: 7.5 | Genre: Terror | Duration: 137 min | Director: Ryan Coogler | Personal Rating: 4.0
+(Awful) ID: 4 | Title: Presenca | Year: 2024 | Rating: 6.1 | Genre: Drama | Duration: 84 min | Director: Steven Soderbergh | Personal Rating: 2.0
+(Favorite) ID: 1 | Title: Como treinar o seu dragao | Year: 2025 | Rating: 7.7 | Genre: Aventura | Duration: 125 min | Director: Dean DeBlois | Personal Rating: 4.5
+(Awful) ID: 2 | Title: Presenca | Year: 2024 | Rating: 6.1 | Genre: Terror | Duration: 84 min | Director: Steven Soderbergh | Personal Rating: 1.0
+(Favorite) ID: 1 | Title: O agente secreto | Year: 2025 | Rating: 7.6 | Genre: Crime | Duration: 181 min | Director: Kleber mendonca filho | Personal Rating: 4.0
+(Favorite) ID: 2 | Title: F1 | Year: 2025 | Rating: 7.7 | Genre: Motorsport | Duration: 175 min | Director: Joseph Kosinski | Personal Rating: 5.0
