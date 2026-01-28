@@ -46,14 +46,6 @@ public abstract class Movie implements Insertable{
         
     }
 
-    public static void setNextId(int nextId) {
-        Movie.nextId = nextId;
-    }
-    
-    public static int getNextId() {
-        return nextId;
-    }
-    
     
     public String getTitle() {
         return title;

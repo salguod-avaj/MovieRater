@@ -34,8 +34,7 @@ public class MovieRater {
         Scanner sc = new Scanner(System.in);
         String path = "/home/dg/NetBeansProjects/movieRater/movieslist";
         Exportable exporter;
-        int lastId = loadLastId(path);
-        Movie.setNextId(lastId + 1);
+        
         
         
         try{
@@ -139,31 +138,11 @@ public class MovieRater {
         catch(IllegalYearException e) {
             System.out.println(e);
         }
-        
-    }
-    
-    
-    private static int loadLastId(String path) {
-        int lastId = 0;
-        
-        File file = new File(path);
-        if (!file.exists()) return 0;
-        
-        try (Scanner fileScanner = new Scanner(file)) {
-            while (fileScanner.hasNextLine()) {
-                String line = fileScanner.nextLine();
-
-            if (line.contains("ID:")) {
-                int start = line.indexOf("ID:") + 3;
-                int end = line.indexOf("|", start);
-                int id = Integer.parseInt(line.substring(start, end).trim());
-                lastId = Math.max(lastId, id);
-            }
+        finally{
+            sc.close();
         }
-    } catch (Exception e) {
-        System.out.println("Error reading file for IDs");
+        
     }
-        return lastId; 
-    }
+    
    
 }
